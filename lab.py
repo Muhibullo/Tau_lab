@@ -25,10 +25,11 @@ print('Первичные передаточные функции');
 print('W1 = ',W11); print('W2 = ',W21); print('W3 = ',W31); print('W4 = ',W41); print('W5 = ',W51);
 print('Измененные передаточные функции');
 print('W1 = ',W12); print('W2 = ',W22); print('W3 = ',W32); print('W4 = ',W42); print('W5 = ',W52);
-def one(w):
+def one(w1,w2):
     '''Переходная функция'''
-    y, x = step(w);
-    plt.plot(x,y);
+    y, x = step(w1);
+    y2,x2 = step(w2);
+    plt.plot(x,y,x2,y2,'--');
     plt.title('Переходная характеристика');
     plt.ylabel('Амплитуда');
     plt.xlabel('Время');
@@ -36,18 +37,19 @@ def one(w):
     plt.show();
 
     '''Импульсная функция'''
-    y,x=impulse(w);
-    plt.plot(x,y);
+    y,x=impulse(w1);
+    y2,x2=impulse(w2);
+    plt.plot(x,y,x2,y2,'--');
     plt.title('Импульсная характеристика');
     plt.ylabel('Амплитуда');
     plt.xlabel('Время');
     plt.grid(True);
     plt.show();
 
-    '''ЛАЧХ и ЛФЧХ'''
-    mag, phase, omega = bode(w, dB=False);
+    '''АЧХ и ФЧХ'''
+    mag, phase, omega = bode(w1,w2, dB=False);
     plt.plot();
     plt.show();
 
 
-one(W12);
+one(W11,W12);
